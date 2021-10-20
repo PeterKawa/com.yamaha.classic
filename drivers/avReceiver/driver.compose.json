@@ -1,0 +1,38 @@
+{
+  "name": {
+    "en": "AV Receiver",
+    "nl": "AV Receiver"
+  },
+  "class": "amplifier",
+  "capabilities": [
+    "volume_set",
+    "onoff",
+    "volume_up",
+    "volume_down"
+  ],
+  "images": {
+    "small": "{{driverAssetsPath}}/images/small.jpg",
+    "large": "{{driverAssetsPath}}/images/large.jpg",
+    "xlarge": "{{driverAssetsPath}}/images/xlarge.jpg"
+  },
+  "pair": [
+    {
+      "id": "rf_ir_remote_learn",
+      "navigation": {
+        "next": "rf_ir_remote_add"
+      },
+      "options": {
+        "title": {
+          "en": "Pair your AV Receiver",
+          "nl": "Koppel je AV Receiver"
+        },
+        "instruction": {
+          "en": "Press next to pair your AV Receiver.",
+          "nl": "Druk op volgende om je AV Receiver te koppelen."
+        }
+      }
+    },{
+      "id": "rf_ir_remote_add"
+    }
+  ]
+}
