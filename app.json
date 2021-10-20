@@ -1,0 +1,176 @@
+{
+  "_comment": "This file is generated. Please edit .homeycompose/app.json instead.",
+  "id": "com.yamaha.classic",
+  "version": "1.0.0",
+  "compatibility": ">=5.0.0",
+  "sdk": 3,
+  "brandColor": "#0000ff",
+  "name": {
+    "en": "Yamaha Classic",
+    "nl": "Yamaha Classic"
+  },
+  "description": {
+    "en": "Use your classic Yamaha RX-V AV receiver in your SmartHome. Please put Homey in line of sight with your receiver.  For now it is not possible to listen to signals of the remote.",
+    "nl": "Gebruik je klassieke Yamaha RX-V AV receiver in jouw SmartHome. Plaats Homey in het zicht van uw receiver. Op dit moment is het niet mogelijk om signalen van de afstandsbediening te ontvangen."
+  },
+  "category": [
+    "music"
+  ],
+  "permissions": [
+    "homey:wireless:ir"
+  ],
+  "images": {
+    "small": "/assets/images/small.png",
+    "large": "/assets/images/large.png",
+    "xlarge": "/assets/images/xlarge.png"
+  },
+  "author": {
+    "name": "Peter Kawa",
+    "email": "peterkawa@gmail.com"
+  },
+  "homeyCommunityTopicId": 52416,
+  "source": "https://github.com/PeterKawa/PeterDeeDash",
+  "support": "mailto:yamaha-classic@peterdee.nl",
+  "flow": {
+    "actions": [
+      {
+        "title": {
+          "en": "Decrease Volume by ..%",
+          "nl": "Verlaag het volume met ..%"
+        },
+        "hint": {
+          "en": "Decrease the volume by a percentage (between 1 and 10)",
+          "nl": "Verlaag het volume met een percentage (tussen 1 en 10)"
+        },
+        "titleFormatted": {
+          "en": "Decrease volume with [[Percentage]]%",
+          "nl": "Verlaag volume met [[Percentage]]%"
+        },
+        "args": [
+          {
+            "name": "Percentage",
+            "type": "number",
+            "placeholder": {
+              "en": "Value between 1 and 10",
+              "nl": "Waarde tussen 1 en 10"
+            },
+            "min": 1,
+            "max": 10,
+            "step": 1
+          }
+        ],
+        "id": "decrease-volume"
+      },
+      {
+        "title": {
+          "en": "Increase Volume by ..%",
+          "nl": "Verhoog het volume met ..%"
+        },
+        "hint": {
+          "en": "Increase the volume by a percentage (between 1 and 10)",
+          "nl": "Verhoog het volume met een percentage (tussen 1 en 10)"
+        },
+        "titleFormatted": {
+          "en": "Increase volume with [[Percentage]]%",
+          "nl": "Verlaag volume met [[Percentage]]%"
+        },
+        "args": [
+          {
+            "name": "Percentage",
+            "type": "number",
+            "placeholder": {
+              "en": "Value between 1 and 10",
+              "nl": "Waarde tussen 1 en 10"
+            },
+            "min": 1,
+            "max": 10,
+            "step": 1
+          }
+        ],
+        "id": "increase-volume"
+      },
+      {
+        "title": {
+          "en": "Turn receiver off",
+          "nl": "Zet receiver uit"
+        },
+        "hint": {
+          "en": "Send an OFF command using InfraRed",
+          "nl": "Geef een UIT commando middels InfraRood"
+        },
+        "id": "turn-receiver-off"
+      },
+      {
+        "title": {
+          "en": "Turn receiver on",
+          "nl": "Zet receiver aan"
+        },
+        "hint": {
+          "en": "Send an ON command using InfraRed",
+          "nl": "Geef een AAN commando middels InfraRood"
+        },
+        "id": "turn-receiver-on"
+      }
+    ]
+  },
+  "drivers": [
+    {
+      "name": {
+        "en": "AV Receiver",
+        "nl": "AV Receiver"
+      },
+      "class": "amplifier",
+      "capabilities": [
+        "volume_set",
+        "onoff",
+        "volume_up",
+        "volume_down"
+      ],
+      "images": {
+        "small": "/drivers/avReceiver/assets/images/small.jpg",
+        "large": "/drivers/avReceiver/assets/images/large.jpg",
+        "xlarge": "/drivers/avReceiver/assets/images/xlarge.jpg"
+      },
+      "pair": [
+        {
+          "id": "rf_ir_remote_learn",
+          "navigation": {
+            "next": "rf_ir_remote_add"
+          },
+          "options": {
+            "title": {
+              "en": "Pair your AV Receiver",
+              "nl": "Koppel je AV Receiver"
+            },
+            "instruction": {
+              "en": "Press next to pair your AV Receiver.",
+              "nl": "Druk op volgende om je AV Receiver te koppelen."
+            }
+          }
+        },
+        {
+          "id": "rf_ir_remote_add"
+        }
+      ],
+      "id": "avReceiver"
+    }
+  ],
+  "signals": {
+    "ir": {
+      "yamaha_signal": {
+        "type": "prontohex",
+        "repetitions": 1,
+        "cmds": {
+          "POWER_ON": "0000 006b 0022 0002 0154 00b4 0016 0016 0016 0042 0016 0016 0016 0042 0016 0042 0016 0042 0016 0042 0016 0016 0016 0042 0016 0016 0016 0042 0016 0016 0016 0016 0016 0016 0016 0016 0016 0042 0016 0042 0016 0016 0016 0042 0016 0042 0016 0042 0016 0016 0016 0016 0016 0016 0016 0016 0016 0042 0016 0016 0016 0016 0016 0016 0016 0042 0016 0042 0016 0042 0016 0602 0154 0055 0016 0e81",
+          "POWER_OFF": "0000 006b 0022 0002 0154 00b4 0016 0016 0016 0042 0016 0016 0016 0042 0016 0042 0016 0042 0016 0042 0016 0016 0016 0042 0016 0016 0016 0042 0016 0016 0016 0016 0016 0016 0016 0016 0016 0042 0016 0042 0016 0016 0016 0042 0016 0042 0016 0042 0016 0016 0016 0016 0016 0016 0016 0016 0016 0042 0016 0016 0016 0016 0016 0016 0016 0042 0016 0042 0016 0042 0016 0602 0154 0055 0016 0e81",
+          "VOLUME_UP": "0000 006b 0022 0002 0154 00b4 0016 0016 0016 0042 0016 0016 0016 0042 0016 0042 0016 0042 0016 0042 0016 0016 0016 0042 0016 0016 0016 0042 0016 0016 0016 0016 0016 0016 0016 0016 0016 0042 0016 0016 0016 0042 0016 0016 0016 0042 0016 0042 0016 0016 0016 0016 0016 0016 0016 0042 0016 0016 0016 0042 0016 0016 0016 0016 0016 0042 0016 0042 0016 0042 0016 0602 0154 0055 0016 0e81",
+          "VOLUME_DOWN": "0000 006b 0022 0002 0154 00b4 0016 0016 0016 0042 0016 0016 0016 0042 0016 0042 0016 0042 0016 0042 0016 0016 0016 0042 0016 0016 0016 0042 0016 0016 0016 0016 0016 0016 0016 0016 0016 0042 0016 0042 0016 0042 0016 0016 0016 0042 0016 0042 0016 0016 0016 0016 0016 0016 0016 0016 0016 0016 0016 0042 0016 0016 0016 0016 0016 0042 0016 0042 0016 0042 0016 0602 0154 0055 0016 0e81",
+          "6_INPUT": "0000 006b 0022 0002 0153 00b3 0016 0016 0016 0016 0016 0041 0016 0041 0016 0016 0016 0041 0016 0016 0016 0041 0016 0041 0016 0041 0016 0016 0016 0016 0016 0041 0016 0016 0016 0041 0016 0016 0016 0016 0016 0016 0016 0041 0016 0041 0016 0016 0016 0016 0016 0016 0016 0016 0016 0041 0016 0041 0016 0016 0016 0016 0016 0041 0016 0041 0016 0041 0016 0041 0016 05fe 0153 0055 0016 0e78",
+          "DVD": "0000 006b 0022 0002 0153 00b4 0016 0016 0016 0016 0016 0041 0016 0041 0016 0016 0016 0041 0016 0016 0016 0041 0016 0041 0016 0041 0016 0016 0016 0016 0016 0041 0016 0016 0016 0041 0016 0016 0016 0016 0016 0016 0016 0041 0016 0016 0016 0016 0016 0016 0016 0016 0016 0016 0016 0041 0016 0041 0016 0016 0016 0041 0016 0041 0016 0041 0016 0041 0016 0041 0016 05fe 0153 0055 0016 0e78",
+          "TUNER": "0000 006b 0022 0002 0154 00b4 0016 0016 0016 0016 0016 0042 0016 0042 0016 0016 0016 0042 0016 0016 0016 0042 0016 0042 0016 0042 0016 0016 0016 0016 0016 0042 0016 0016 0016 0042 0016 0016 0016 0016 0016 0042 0016 0016 0016 0016 0016 0016 0016 0016 0016 0016 0016 0016 0016 0042 0016 0016 0016 0042 0016 0042 0016 0042 0016 0042 0016 0042 0016 0042 0016 0602 0154 0055 0016 0e81",
+          "DTV_CBL": "0000 006b 0022 0002 0154 00b4 0016 0016 0016 0016 0016 0042 0016 0042 0016 0016 0016 0042 0016 0016 0016 0042 0016 0042 0016 0042 0016 0016 0016 0016 0016 0042 0016 0016 0016 0042 0016 0016 0016 0042 0016 0016 0016 0042 0016 0016 0016 0016 0016 0016 0016 0016 0016 0016 0016 0016 0016 0042 0016 0016 0016 0042 0016 0042 0016 0042 0016 0042 0016 0042 0016 0602 0154 0055 0016 0e81"
+        }
+      }
+    }
+  }
+}
